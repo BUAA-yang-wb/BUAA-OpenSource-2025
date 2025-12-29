@@ -1,0 +1,5 @@
+{
+  "name": "开源项目智囊 (Open Source Project Assistant)",
+  "description": "一个基于Gemini的开源项目Issue追踪、分析与预测助手。支持Issue分类统计、解决趋势分析以及AI辅助的未来风险预测。",
+  "requestFramePermissions": []
+}
