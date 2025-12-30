@@ -33,20 +33,13 @@ export const ContributorHealthPanel: React.FC<Props> = ({ issues, darkMode }) =>
     });
 
     const calculatedStats: ContributorStat[] = Array.from(map.entries()).map(([name, data]) => {
-      // Heuristic Risk Score Logic
-      // 1. High Load Risk: > 5 open issues starts to get heavy. Max out at 10. (Weight: 60%)
+
       const loadFactor = Math.min(10, data.open) / 10;
       const loadRisk = loadFactor * 60;
       
-      // 2. Velocity Risk (Burnout): Very high resolved count might mean overworking/hero mode.
-      // Assume 20 resolved is a high benchmark. (Weight: 40%)
       const velocityFactor = Math.min(20, data.resolved) / 20;
       const velocityRisk = velocityFactor * 40;
 
-      // Combined risk. 
-      // However, usually High Load + Low Velocity = Stuck/Overwhelmed.
-      // High Load + High Velocity = Burnout Risk.
-      // For simplicity, we just sum them to indicate "Intensity".
       const totalRisk = Math.min(100, loadRisk + velocityRisk);
       
       return {
